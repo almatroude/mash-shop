@@ -83,7 +83,9 @@ const Login = () => {
               </StyledButton>
               <ExtraView>
                 <ExtraText>Don't have Account already?</ExtraText>
-                <TextLink><TextLinkContent>Signup</TextLinkContent></TextLink>
+                <TextLink>
+                  <TextLinkContent>Signup</TextLinkContent>
+                </TextLink>
               </ExtraView>
             </StyledFormArea>
           )}
@@ -102,7 +104,7 @@ const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, .
       <StyledInputLabel>{label}</StyledInputLabel>
       <StyledTextInput {...props} />
       {isPassword && (
-        <RightIcon onPress={() => setHidePassword(hidePassword)}>
+        <RightIcon onPress={() => setHidePassword(!hidePassword)}>
           <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color={darkLight} />
         </RightIcon>
       )}
