@@ -30,8 +30,11 @@ import { View } from 'react-native';
 const { brand, darkLight, primary } = Colors;
 import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
 
-const Login = () => {
+const Login = (params) => {
+  const navigation = params.navigation;
+
   const [hidePassword, setHidePassword] = useState(true);
+  
 
   return (
     <StyledContainer>
@@ -73,7 +76,7 @@ const Login = () => {
                 setHidePassword={setHidePassword}
               />
               <MsgBox>...</MsgBox>
-              <StyledButton onPress={handleSubmit}>
+              <StyledButton onPress={()=>navigation.navigate("Home")}>
                 <ButtonText>Login</ButtonText>
               </StyledButton>
               <Line></Line>
@@ -83,7 +86,7 @@ const Login = () => {
               </StyledButton>
               <ExtraView>
                 <ExtraText>Don't have Account already?</ExtraText>
-                <TextLink>
+                <TextLink onPress={()=>navigation.navigate("Signup")}>
                   <TextLinkContent>Signup</TextLinkContent>
                 </TextLink>
               </ExtraView>

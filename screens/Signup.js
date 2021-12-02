@@ -31,8 +31,10 @@ const { brand, darkLight, primary } = Colors;
 import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { NavigationContainer } from '@react-navigation/native';
 
-const Signup = () => {
+const Signup = (params) => {
+  const navigation = params.navigation;
   const [hidePassword, setHidePassword] = useState(true);
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date(2020, 0, 1));
@@ -109,7 +111,7 @@ const Signup = () => {
 
               <MyTextInput
                 label="Password"
-                placeholder="*********************"
+                placeholder="*************"
                 placeholderTextColor={darkLight}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
@@ -123,7 +125,7 @@ const Signup = () => {
 
               <MyTextInput
                 label="Comfirm Password"
-                placeholder="*********************"
+                placeholder="*************"
                 placeholderTextColor={darkLight}
                 onChangeText={handleChange('comfirmPassword')}
                 onBlur={handleBlur('comfirmPassword')}
@@ -135,13 +137,13 @@ const Signup = () => {
                 setHidePassword={setHidePassword}
               />
               <MsgBox>...</MsgBox>
-              <StyledButton onPress={handleSubmit}>
-                <ButtonText>Login</ButtonText>
+              <StyledButton onPress={()=>navigation.navigate("Home")}>
+                <ButtonText>Sign up</ButtonText>
               </StyledButton>
               <Line></Line>
               <ExtraView>
                 <ExtraText>Already having an account</ExtraText>
-                <TextLink>
+                <TextLink onPress={()=>navigation.navigate("Login")}>
                   <TextLinkContent>Login</TextLinkContent>
                 </TextLink>
               </ExtraView>

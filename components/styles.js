@@ -10,9 +10,13 @@ export const Colors = {
   secondary: '#E5E7EB',
   tertiary: '#1F2937',
   darkLight: '#9CA3AF',
+  white:  '#fff',
   brand: '#6D28D9',
+  light: '#F1F1F1',
+  dark: '#000',
   green: '#10B981',
-  red: '#EF4444',
+  red: '#F52A2A',
+
 };
 
 const { primary, secondary, tertiary, darkLight, brand, green, red } = Colors;
@@ -57,9 +61,9 @@ export const StyledTextInput = styled.TextInput`
   padding: 15px;
   padding-left: 55px;
   padding-right: 55px;
-  border-radius: 5px;
+  border-radius: 15px;
   font-size: 16px;
-  height: 60px;
+  height: 50px;
   margin-vertical: 3px;
   margin-bottom: 10px;
   color: ${tertiary};
@@ -91,7 +95,7 @@ export const StyledButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-vertical: 5px;
   height: 60px;
   ${(props) =>
