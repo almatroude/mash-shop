@@ -14,13 +14,13 @@ import plants from '../components/plants/';
 //import Icon from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Colors} from './../components/styles';
-const width = Dimensions.get('screen').width /2-30;
-const HomeScreen = (navigation) => {
+import { Colors } from './../components/styles';
+const width = Dimensions.get('screen').width / 2 - 30;
+const HomeScreen = ({ navigation }) => {
   const [categoryIndex, setCategoryIndex] = React.useState(0);
   const categories = ['POPULAR', 'ORGANIC', 'INDOORS', 'SYNTHETIC'];
 
-  const CategoryList = (navigation) => {
+  const CategoryList = () => {
     return (
       <View style={style.categoryContainer}>
         {categories.map((item, index) => (
@@ -34,43 +34,45 @@ const HomeScreen = (navigation) => {
     );
   };
 
-  const Card = ({plant}) => {
+  const Card = ({ plant }) => {
     return (
-      <TouchableOpacity onPress={()=> navigation.navigate("Details")}>
+      <TouchableOpacity onPress={() => navigation.navigate('Details', plant)}>
         <View style={style.card}>
-      <View style={{ alignItems: 'flex-end' }}>
-        <View
-          style={{
-            width: 30,
-            height: 30,
-            borderRadius: 15,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: plant.like
-            ? `rgba(245, 42, 42, 0.2)` 
-            : `rgba(0,0,0,0.2)`,
-          }}
-        >
-          <Icon name="favorite" size={18} color={plant.like? Colors.red : Colors.dark
-          } />
+          <View style={{ alignItems: 'flex-end' }}>
+            <View
+              style={{
+                width: 30,
+                height: 30,
+                borderRadius: 15,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: plant.like ? `rgba(245, 42, 42, 0.2)` : `rgba(0,0,0,0.2)`,
+              }}
+            >
+              <Icon name="favorite" size={18} color={plant.like ? Colors.red : Colors.dark} />
+            </View>
+          </View>
+          <View style={{ height: 100, alignItems: 'center' }}>
+            <Image source={plant.img} style={{ flex: 1, resizeMode: 'contain' }} />
+          </View>
+          <Text style={{ fontWeight: 'bold', fontSize: 14, marginTop: 10 }}> {plant.name}</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 5 }}>
+            <Text style={{ fontSize: 19, fontWeight: 'bold' }}>${plant.price}</Text>
+            <View
+              style={{
+                height: 25,
+                width: 25,
+                backgroundColor: Colors.brand,
+                borderRadius: 5,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{ fontSize: 20, color: Colors.white, fontWeight: 'bold' }}>+</Text>
+            </View>
+          </View>
         </View>
-      </View>
-      <View style={{ height: 100, alignItems: 'center' }}>
-        <Image 
-        source={plant.img}
-        style={{ flex: 1, resizeMode: 'contain' }}  />
-      </View>
-      <Text style={{fontWeight: 'bold', fontSize: 14, marginTop: 10}}> {plant.name}</Text>
-      <View style= {{flexDirection: 'row', justifyContent: 'space-between', marginTop: 5,}}><Text style={{fontSize: 19, fontWeight: 'bold'}}>${plant.price}</Text>
-      <View style={{height: 25, width: 25, backgroundColor: Colors.brand, borderRadius: 5,
-      justifyContent: 'center',
-      alignItems: 'center',}}>
-        <Text style={{ fontSize: 20, color: Colors.white, fontWeight: 'bold',}}>+</Text>
-      </View>
-      </View>
-    </View>
-    </TouchableOpacity>
-      
+      </TouchableOpacity>
     );
   };
   return (
@@ -78,7 +80,7 @@ const HomeScreen = (navigation) => {
       <View style={style.header}>
         <View>
           <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Welcome to</Text>
-          <Text style={{ fontSize: 40, fontWeight: 'bold', color: Colors.brand }}>MashShopp</Text>
+          <Text style={{ fontSize: 40, fontWeight: 'bold', color: Colors.brand }}>MashShop</Text>
         </View>
         <Icon name="shopping-cart" size={28} />
       </View>
@@ -99,11 +101,9 @@ const HomeScreen = (navigation) => {
           marginTop: 10,
           paddingBottom: 50,
         }}
-        
         numColumns={2}
         data={plants}
-        renderItem={({item}) => <Card plant={item}/>
-        }
+        renderItem={({ item }) => <Card plant={item} />}
       />
     </SafeAreaView>
   );
